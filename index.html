@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Navbar</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <div class="mobile-menu-wrap">
+            <ul class="sidebar" id="sideMenu">
+                <li class="close-icon">
+                    <a href="#" aria-label="Close menu" id="closeMenu">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                    </a>
+                </li>
+                <li><a href="#" data-page="About">About</a></li>
+                <li><a href="#" data-page="Data privacy">Data privacy</a></li>
+                <li><a href="#" data-page="Contact">Contact</a></li>
+            </ul>
+        </div>
+        <ul class="topnav">
+            <li class="logo-item">
+                <a href="#" id="homeLink">
+                    <img src="logo.png" alt="NOI logo">
+                </a>
+            </li>
+            <li><a href="#" data-page="About">About</a></li>
+            <li><a href="#" data-page="Data privacy">Data privacy</a></li>
+            <li><a href="#" data-page="Contact">Contact</a></li>
+            <li class="menu-icon">
+                <a href="#" aria-label="Open menu" id="menuToggle">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <main class="page-content" id="pageContent">
+        <div class="content-card">
+            <h1><span class="noi-word">NO<span class="red-i">I</span></span> stands for No Infringements!</h1>
+            <p class="tagline">Built by a driver, for drivers.</p>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>© 2026 Adrian <span class="noi-word">NO<span class="red-i">I</span></span>. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const closeMenu = document.getElementById('closeMenu');
+        const sideMenu = document.getElementById('sideMenu');
+        const pageContent = document.getElementById('pageContent');
+        const homeLink = document.getElementById('homeLink');
+
+        const pages = {
+            About: `
+                <div class="about-stack">
+                    <section class="about-section">
+                        <div class="info-card">
+                            <h2>What is <span class="noi-word">NO<span class="red-i">I</span></span>?</h2>
+                            <p><span class="noi-word">NO<span class="red-i">I</span></span> stands for No Infringement. It's a sleek, professional, local-first digital tachograph and compliance assistant designed specifically for HGV drivers navigating EU and UK driving hours regulations. The fundamental purpose is simple: To protect professional drivers from costly legal infringements while keeping their personal data entirely private.</p>
+                        </div>
+                    </section>
+
+                    <section class="about-section">
+                        <div class="mission-container">
+                            <h3>Our Two Core Missions</h3>
+                            <div class="mission-cards">
+                                <div class="info-card mission-card">
+                                    <h2><svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.2-2.6 7.8-7 10-4.4-2.2-7-5.8-7-10V6l7-3z"></path><path d="M9.5 12.5l1.8 1.8 3.2-3.8"></path></svg> Compliance Security</h2>
+                                    <p>Acts as a real-time, intelligent co-driver that tracks EU/UK driving rules and tachograph logic perfectly, firing off early alarms to make sure you never accidentally violate a regulation.</p>
+                                </div>
+                                <div class="info-card mission-card">
+                                    <h2><svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12z"></path><circle cx="12" cy="12" r="3"></circle></svg> Privacy Freedom</h2>
+                                    <p>A premium, bulletproof tracking utility that answers to you, not a corporate cloud. By keeping data sandboxed locally on your phone, your daily work patterns, speed telemetry, and route habits belong exclusively to you.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="about-section">
+                        <div class="info-card">
+                            <h2>What Project <span class="noi-word">NO<span class="red-i">I</span></span> Solves</h2>
+                            
+
+                            <div class="solve-cards">
+                                <div class="solve-card info-card">
+                                    <h2>Demystifying the Clock: Visualizing the Timers</h2>
+                                    <p><span class="noi-word">NO<span class="red-i">I</span></span> acts as a visual translation tool. It is designed to visually explain exactly how your driving, work, and rest timers are interacting in real time. It takes the mystery out of the regulations, showing you precisely what resets and when.</p>
+                                </div>
+                                <div class="solve-card info-card">
+                                    <h2>Fixing the "POA Over 45 Minutes" Tachograph Flaw</h2>
+                                    <p><span class="noi-word">NO<span class="red-i">I</span></span> puts a stop to that nonsense. It keeps an accurate, unfiltered log of your actual time. It does not automatically wipe or reset your driving time just because a POA longer than 45 minutes was detected.</p>
+                                </div>
+                                <div class="solve-card info-card">
+                                    <h2>A Copilot and Learning Guide—Not a Taskmaster</h2>
+                                    <p><span class="noi-word">NO<span class="red-i">I</span></span> is entirely on your side. Think of it as a personal helper, a digital copilot, and a guide to mastering the complex EU/UK driving directives. It’s there to help you learn the times and confidently plan your shifts, not to report on you.</p>
+                                </div>
+                                <div class="solve-card info-card">
+                                    <h2>Dodging the Most Common Infringements</h2>
+                                    <p>By giving you a highly readable, dedicated compliance dashboard, NOI keeps those common, easily avoided slip-ups off your record. It alerts you early so you can find a safe place to park up legally.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="about-section">
+                        <div class="info-card">
+                            <h4 class="reality-heading">
+                                <svg class="warning-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                                    <line x1="12" y1="9" x2="12" y2="13"></line>
+                                    <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                                </svg>
+                                Reality Check
+                            </h4>
+                            <ul class="reality-list">
+                                <li class="reality-item"><span class="bullet"></span><p>Not an officially accredited, legal, or government-mandated application.</p></li>
+                                <li class="reality-item"><span class="bullet"></span><p>Software can have bugs — always cross-reference official vehicle instruments.</p></li>
+                                <li class="reality-item"><span class="bullet"></span><p>This is Version 1.0; please report bugs and provide constructive feedback.</p></li>
+                                <li class="reality-item"><span class="bullet"></span><p>There's a human developer behind this — community contributions welcome.</p></li>
+                            </ul>
+                        </div>
+                    </section>
+                </div>
+            `,
+            'Data privacy': `
+                <section class="data-privacy">
+                    <h1>PROJECT <span class="noi-word">NO<span class="red-i">I</span></span> — Data Privacy Policy</h1>
+                    <p>At Project <span class="noi-word">NO<span class="red-i">I</span></span>, we prioritize your privacy as a professional driver. Our "Local-First" architecture ensures that your sensitive telemetry and compliance data stay under your control.</p>
+
+                    <div class="privacy-list">
+                        <div class="privacy-item">
+                            <h2>Location Data</h2>
+                            <p><span class="noi-word">NO<span class="red-i">I</span></span> requests background location access to accurately track your driving sessions and speed. This data is processed locally on your device to calculate real-time compliance with EU/UK regulations.</p>
+                            <p><strong>Usage:</strong> Only used for tachograph logic and speed alerts.</p>
+                            <p><strong>Sharing:</strong> Never shared with third parties for advertising or tracking.</p>
+                        </div>
+
+                        <div class="privacy-item">
+                            <h2>Local-First Storage</h2>
+                            <p>Your full compliance history, including minute logs and shift records, is stored securely in an encrypted database on your physical device.</p>
+                            <p><strong>Security:</strong> Data is sandboxed within the app and is not accessible by other applications.</p>
+                            <p><strong>Control:</strong> You are the primary custodian of your professional records.</p>
+                        </div>
+
+                        <div class="privacy-item">
+                            <h2>Optional Cloud Sync</h2>
+                            <p>Data only leaves your device if you explicitly choose to use our cloud features.</p>
+                            <p><strong>Manual Sync:</strong> Triggered by the "Sync to Cloud" button for device transfers.</p>
+                            <p><strong>System Safety:</strong> One-time automatic backup may occur during critical legal logic updates to prevent data loss.</p>
+                            <p><strong>Encryption:</strong> All cloud data is AES-encrypted using your unique User ID (UID).</p>
+                        </div>
+
+                        <div class="privacy-item">
+                            <h2>Data Ownership & Deletion</h2>
+                            <p>You own 100% of your data.</p>
+                            <p><strong>Export:</strong> You can generate and export your full history at any time via the "Export Terminal."</p>
+                            <p><strong>Deletion:</strong> You can permanently delete all records by clearing the app storage or deleting your account.</p>
+                        </div>
+
+                        <div class="privacy-item">
+                            <h2>Contact</h2>
+                            <p>For questions regarding this policy or your data rights, please use contact form.</p>
+                        </div>
+                    </div>
+                </section>
+            `,
+            Contact: `
+                <section class="contact-page">
+                    
+                    <h1>Contact Project <span class="noi-word">NO<span class="red-i">I</span></span></h1>
+                    <form id="contactForm" action="https://formspree.io/f/xpqgeozj" method="POST">
+                        <input type="text" name="name" placeholder="Your Name" autoComplete="off" required>
+    
+                        <input type="email" name="email" placeholder="Your Email" autoComplete="off" required>
+    
+                        <textarea rows="5" cols="60" name="message" placeholder="Your Message" autoComplete="off" required></textarea>
+                        <button type="submit">Send Message</button>
+</form>
+                    
+                    
+
+            
+                </section>
+            `
+        };
+
+        const homePageMarkup = `
+            <div class="content-card">
+                <h1><span class="noi-word">NO<span class="red-i">I</span></span> stands for No Infringements!</h1>
+                <p class="tagline">Built by a driver, for drivers.</p>
+            </div>
+        `;
+
+        function showHomePage() {
+            pageContent.innerHTML = homePageMarkup;
+        }
+
+        pageContent.innerHTML = homePageMarkup;
+
+        function showPage(pageName) {
+            if (pages[pageName]) {
+                pageContent.innerHTML = `<div class="content-card">${pages[pageName]}</div>`;
+            }
+        }
+
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function (event) {
+                const pageName = this.getAttribute('data-page') || this.textContent.trim();
+
+                if (this.id === 'homeLink') {
+                    event.preventDefault();
+                    showHomePage();
+                    return;
+                }
+
+                if (pages[pageName]) {
+                    event.preventDefault();
+                    showPage(pageName);
+                    if (sideMenu) {
+                        sideMenu.classList.remove('open');
+                    }
+                }
+            });
+        });
+
+        if (menuToggle && sideMenu) {
+            menuToggle.addEventListener('click', function (event) {
+                event.preventDefault();
+                sideMenu.classList.toggle('open');
+            });
+        }
+
+        if (closeMenu && sideMenu) {
+            closeMenu.addEventListener('click', function (event) {
+                event.preventDefault();
+                sideMenu.classList.remove('open');
+            });
+        }
+        window.addEventListener('DOMContentLoaded', () => {
+            
+            // 2. Look at the web address bar. Is '#privacy' sitting at the end?
+            if (window.location.hash === '#privacy') {
+                
+                // 3. If yes, run your existing function to inject the Privacy HTML string
+                showPage('Data privacy');
+                
+                // 4. Smoothly scroll the screen down to the content box
+                if (pageContent) {
+                    pageContent.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        });
+    </script>
+</body>
+</html>
