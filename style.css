@@ -1,3 +1,6 @@
+/* ==========================================================================
+   1. RESET & BASE LAYOUT STYLES
+   ========================================================================== */
 * {
     margin: 0;
     padding: 0;
@@ -7,7 +10,7 @@
 html, body {
     width: 100%;
     max-width: 100%;
-    overflow-x: hidden; /* Prevents side-scrolling entirely */
+    overflow-x: hidden; /* Prevents side-scrolling and pinch-zoom canvas break */
     background-color: black;
 }
 
@@ -20,7 +23,9 @@ body {
     font-family: 'segoe ui', tahoma, geneva, verdana, sans-serif;
 }
 
-/* 2. TOP DESKTOP NAVIGATION */
+/* ==========================================================================
+   2. DESKTOP NAVIGATION
+   ========================================================================== */
 nav {
     position: relative;
     z-index: 10;
@@ -44,7 +49,7 @@ nav li {
 }
 
 nav .topnav li:first-child {
-    margin-right: auto; /* Pushes logo to the left */
+    margin-right: auto; /* Pushes logo cleanly to the left */
 }
 
 nav a {
@@ -71,12 +76,14 @@ nav a:hover {
     border-radius: 50%;
 }
 
-/* Hide hamburger menu icon on desktop */
+/* Hide hamburger menu icon on desktop layout styles */
 .topnav .menu-icon {
     display: none;
 }
 
-/* 3. MOBILE SIDEBAR DRAWER (Right Side Slide-out) */
+/* ==========================================================================
+   3. MOBILE SIDEBAR DRAWER (Slide-out animation configuration)
+   ========================================================================== */
 .mobile-menu-wrap {
     position: fixed;
     inset: 0;
@@ -85,7 +92,7 @@ nav a:hover {
     justify-content: flex-end;
     overflow: hidden; 
     
-    /* Makes the wrap completely click-through so you can interact with the burger icon */
+    /* CRITICAL FIX: Stops wrapper box overlay from intercepting burger taps */
     pointer-events: none; 
 }
 
@@ -94,7 +101,7 @@ nav a:hover {
     list-style: none;
     width: min(280px, 100%);
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: rgba(0, 0, 0, 0.95); /* Slightly darker for higher contrast reading */
     backdrop-filter: blur(8px);
     box-shadow: -10px 0 10px rgba(0,0,0,0.5);
     display: flex;
@@ -106,11 +113,10 @@ nav a:hover {
     gap: 6px;
     overflow-y: auto;
     
-    /* Slide off-screen right & hide layout completely when closed */
+    /* Slide off-screen right & hide layout footprint completely when closed */
     transform: translateX(100%);
     visibility: hidden;
     opacity: 0;
-    pointer-events: none; /* Ignore touches when hidden */
     transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
 }
 
@@ -118,7 +124,7 @@ nav a:hover {
     transform: translateX(0);
     visibility: visible;
     opacity: 1;
-    pointer-events: auto; /* Re-enable clicks when the menu slides out */
+    pointer-events: auto; /* Restores touch mechanics when sidebar slides out */
 }
 
 .sidebar li {
@@ -152,16 +158,19 @@ nav a:hover {
     display: block;
 }
 
-/* 4. RESPONSIVE MEDIA QUERIES (Must always sit at the bottom of nav styles) */
+/* ==========================================================================
+   4. RESPONSIVE MEDIA QUERIES (Must sit cleanly below base nav engine)
+   ========================================================================== */
 @media (max-width: 768px) {
-    /* Hide regular desktop links */
+    /* Hide desktop specific text links */
     .topnav > li:not(.menu-icon):not(.logo-item) {
         display: none;
     }
 
-    /* Show hamburger icon */
+    /* Activate mobile touch target icon */
     .topnav .menu-icon {
         display: flex;
+        pointer-events: auto; /* Explicitly guarantees click tracking */
     }
     
     .topnav .menu-icon a {
@@ -173,8 +182,11 @@ nav a:hover {
     }
 }
 
+/* ==========================================================================
+   5. PAGE CONTENT HOUSING
+   ========================================================================== */
 .page-content {
-    padding: 40px 24px 80px; /* Added 80px bottom padding so content doesn't tuck behind the fixed footer */
+    padding: 40px 24px 100px; /* Enhanced bottom safety clearance layout */
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -214,6 +226,9 @@ nav a:hover {
     margin-top: 8px;
 }
 
+/* ==========================================================================
+   6. ABOUT DASHBOARD SUB-CARDS
+   ========================================================================== */
 .about-stack {
     display: flex;
     flex-direction: column;
@@ -291,7 +306,9 @@ nav a:hover {
     font-size: 1.35rem;
 }
 
-/* Data privacy formatting tweaks */
+/* ==========================================================================
+   7. DATA PRIVACY PANEL FORMATTING
+   ========================================================================== */
 .data-privacy {
     color: #dffaff;
 }
@@ -316,6 +333,9 @@ nav a:hover {
     color: #cfffff;
 }
 
+/* ==========================================================================
+   8. CARD GRID STRUCTURES
+   ========================================================================== */
 .mission-cards {
     display: grid;
     width: 100%;
@@ -332,7 +352,6 @@ nav a:hover {
     box-sizing: border-box;
 }
 
-/* Grid for the four placeholder 'What Project NOI Solves' cards */
 .solve-cards {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -351,7 +370,9 @@ nav a:hover {
     color: cyan;
 }
 
-/* Reality Check styling */
+/* ==========================================================================
+   9. REALITY CHECK SUB-MODULES
+   ========================================================================== */
 .reality-heading {
     display: flex;
     align-items: center;
@@ -402,6 +423,9 @@ nav a:hover {
     }
 }
 
+/* ==========================================================================
+   10. PERSISTENT SYSTEM FOOTER
+   ========================================================================== */
 .site-footer {
     position: fixed;
     bottom: 0;
@@ -410,8 +434,9 @@ nav a:hover {
     padding: 12px 20px;
     text-align: center;
     color: cyan;
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.85); /* Slightly fortified background transparency */
     backdrop-filter: blur(6px);
+    z-index: 50; /* Ensures baseline elements scale beneath main layout navigation panels */
 }
 
 .site-footer p {
@@ -419,30 +444,29 @@ nav a:hover {
     font-weight: bold;
 }
 
-/* Contact Page Layout Container */
+/* ==========================================================================
+   11. CONTACT INTERACTION FORMS
+   ========================================================================== */
 .contact-page {
     max-width: 500px;
     margin: 0 auto;
     padding: 20px 0;
     text-align: left;
-    color: #06b6d4; /* Sets the heading and container text to cyan */
+    color: #06b6d4;
 }
 
-/* Style the Form Heading */
 .contact-page h1 {
     margin-bottom: 20px;
     font-size: 1.8rem;
 }
 
-/* This arranges the inputs vertically inside the new form tag */
 .contact-page form {
     display: flex;
     flex-direction: column;
-    gap: 15px; /* Adds balanced spacing between your inputs */
+    gap: 15px;
     width: 100%;
 }
 
-/* Style Inputs and Textarea together */
 .contact-page input,
 .contact-page textarea {
     width: 100%;
@@ -453,28 +477,25 @@ nav a:hover {
     font-size: 1rem;
     box-sizing: border-box;
     background-color: #fff;
-    color: #333; /* Dark text inside the boxes so it is easy to read */
+    color: #333;
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* Highlight input borders with a Cyan glow when clicked/focused */
 .contact-page input:focus,
 .contact-page textarea:focus {
     outline: none;
-    border-color: #06b6d4; /* Cyan border */
-    box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.2); /* Soft cyan glow */
+    border-color: #06b6d4;
+    box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.2);
 }
 
-/* Control vertical resizing of the text box */
 .contact-page textarea {
     resize: vertical; 
     min-height: 120px;
 }
 
-/* Style the Submit Button */
 .contact-page button[type="submit"] {
-    background-color: #06b6d4; /* Cyan background */
-    color: #ffffff; /* White text */
+    background-color: #06b6d4;
+    color: #ffffff;
     font-size: 1rem;
     font-weight: 600;
     padding: 12px 24px;
@@ -482,15 +503,13 @@ nav a:hover {
     border-radius: 6px;
     cursor: pointer;
     transition: background-color 0.2s ease, transform 0.1s ease;
-    align-self: flex-start; /* Keeps the button cleanly sized instead of full-width */
+    align-self: flex-start;
 }
 
-/* Button Hover State */
 .contact-page button[type="submit"]:hover {
-    background-color: #0891b2; /* Slightly darker cyan when hovering */
+    background-color: #0891b2;
 }
 
-/* Button Click State */
 .contact-page button[type="submit"]:active {
-    transform: scale(0.98); /* Subtle springy click animation */
+    transform: scale(0.98);
 }
