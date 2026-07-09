@@ -1,4 +1,4 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box; /* Ensures padding doesn't cause width blowout */
@@ -81,10 +81,12 @@ nav a:hover {
     position: fixed;
     inset: 0;
     z-index: 999;
-    pointer-events: none;
     display: flex;
     justify-content: flex-end;
     overflow: hidden; 
+    
+    /* Makes the wrap completely click-through so you can interact with the burger icon */
+    pointer-events: none; 
 }
 
 .sidebar {
@@ -108,14 +110,15 @@ nav a:hover {
     transform: translateX(100%);
     visibility: hidden;
     opacity: 0;
-    transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s. ease;
+    pointer-events: none; /* Ignore touches when hidden */
+    transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .sidebar.open {
     transform: translateX(0);
     visibility: visible;
     opacity: 1;
-    pointer-events: auto;
+    pointer-events: auto; /* Re-enable clicks when the menu slides out */
 }
 
 .sidebar li {
@@ -171,7 +174,7 @@ nav a:hover {
 }
 
 .page-content {
-    padding: 40px 24px 24px;
+    padding: 40px 24px 80px; /* Added 80px bottom padding so content doesn't tuck behind the fixed footer */
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -415,6 +418,7 @@ nav a:hover {
     margin: 0;
     font-weight: bold;
 }
+
 /* Contact Page Layout Container */
 .contact-page {
     max-width: 500px;
