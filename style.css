@@ -105,18 +105,19 @@ nav .topnav li:first-child {
    3. MOBILE SIDEBAR DRAWER (Slide-out configuration)
    ========================================================================== */
 .mobile-menu-wrap {
-    position: fixed;
-    inset: 0;
-    z-index: 999;
-    pointer-events: none; /* Let clicks pass through to content cards when closed */
-    display: flex;
-    justify-content: flex-end;
+    /* CRITICAL CHANGE: Using display: contents removes this container's 
+       physical footprint entirely so it cannot block your underlying header clicks */
+    display: contents; 
 }
 
 .sidebar {
-    position: fixed; /* CRITICAL: Fixed positioning stops the container from breaking the viewport */
+    /* Keep fixed positioning so the sidebar still floats correctly */
+    position: fixed; 
     right: 0;
     top: 0;
+    z-index: 1000; /* Puts the drawer safely on top when open */
+    
+    list-style: none;
     width: min(280px, 100%);
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.95);
@@ -131,10 +132,10 @@ nav .topnav li:first-child {
     gap: 6px;
     overflow-y: auto;
     
-    /* Hide off-screen completely when closed */
+    /* Slide off-screen right & hide layout footprint completely when closed */
     transform: translateX(100%);
     opacity: 0;
-    visibility: hidden; /* CRITICAL: Forces mobile browsers to ignore this element on zoom out */
+    visibility: hidden; /* Tells mobile browsers to completely ignore this element on zoom out */
     transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
 }
 
@@ -142,7 +143,7 @@ nav .topnav li:first-child {
     transform: translateX(0);
     opacity: 1;
     visibility: visible;
-    pointer-events: auto; /* Restores link clicks when sidebar opens */
+    pointer-events: auto; /* Restores touch mechanics when sidebar slides open */
 }
 
 .sidebar li {
