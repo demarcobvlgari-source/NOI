@@ -106,7 +106,7 @@ nav a:hover {
 }
 
 .sidebar {
-    position: relative;
+    position: fixed;
     list-style: none;
     width: min(280px, 100%);
     height: 100vh;
