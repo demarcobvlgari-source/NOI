@@ -140,6 +140,7 @@ nav .topnav li:first-child{
     pointer-events: none;
     display: flex;
     justify-content: flex-end;
+    overflow: hidden;
 }
 
 .sidebar{
@@ -161,12 +162,14 @@ nav .topnav li:first-child{
     opacity: 0;
     pointer-events: none;
     transition: transform 0.3s ease, opacity 0.3s ease;
+    visibility: hidden;
 }
 
 .sidebar.open{
     transform: translateX(0);
     opacity: 1;
     pointer-events: auto;
+    visibility: visible;
 }
 
 .sidebar li{
