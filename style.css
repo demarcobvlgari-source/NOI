@@ -92,8 +92,17 @@ nav a:hover {
     justify-content: flex-end;
     overflow: hidden; 
     
-    /* CRITICAL FIX: Stops wrapper box overlay from intercepting burger taps */
-    pointer-events: none; 
+    /* CRITICAL FIX: Changed from none to auto so it doesn't block touch mechanics entirely */
+    pointer-events: auto; 
+    
+    /* Initially hide the entire wrapping panel from view so background stays clickable */
+    visibility: hidden;
+    transition: visibility 0.3s ease;
+}
+
+/* When the menu contains the open state, toggle viewport pane visibility instantly */
+.mobile-menu-wrap:has(.sidebar.open) {
+    visibility: visible;
 }
 
 .sidebar {
@@ -115,16 +124,13 @@ nav a:hover {
     
     /* Slide off-screen right & hide layout footprint completely when closed */
     transform: translateX(100%);
-    visibility: hidden;
     opacity: 0;
-    transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
+    transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .sidebar.open {
     transform: translateX(0);
-    visibility: visible;
     opacity: 1;
-    pointer-events: auto; /* Restores touch mechanics when sidebar slides out */
 }
 
 .sidebar li {
@@ -170,11 +176,14 @@ nav a:hover {
     /* Activate mobile touch target icon */
     .topnav .menu-icon {
         display: flex !important;
-        pointer-events: auto; /* Explicitly guarantees click tracking */
+        width: 56px; 
+        justify-content: center;
+        align-items: center;
     }
     
     .topnav .menu-icon a {
-        padding: 0 16px;
+        padding: 0; 
+        width: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
